@@ -8,6 +8,9 @@ export class Player {
   constructor() {
     this.currentX = 0;
     this.currentY = 0;
+    this.health = 100;
+    this.potions = 0;
+    this.currentWeapon = 'sword';
   }
   move(direction) {
     switch(direction) {
