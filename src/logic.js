@@ -28,5 +28,8 @@ export class Player {
 }
 
 export class Room {
-  
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 }

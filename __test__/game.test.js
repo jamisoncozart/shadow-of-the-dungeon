@@ -8,7 +8,7 @@ describe('Game', () => {
   beforeEach(() => {
     game = new Game();
     player = new Player();
-    roomTest = new Room();
+    roomTest = new Room(0,0);
   })
   test('should check for successful Game constructionk', () => {
     expect(typeof game).toEqual("object");
