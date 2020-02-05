@@ -12,16 +12,16 @@ export class Player {
   move(direction) {
     switch(direction) {
       case "down":
-        this.currentY++;
+        if(this.currenY !== 2) this.currentY++;
         break;
       case "up":
-        this.currentY--;
+        if(this.currentY !== 0) this.currentY--;
         break;
       case "right":
-        this.currentX++;
+        if(this.currentX !== 2) this.currentX++;
         break;
       case "left":
-        this.currentX--;
+        if(this.currentX !==0) this.currentX--;
         break;
     }
   }

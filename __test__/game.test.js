@@ -28,4 +28,16 @@ describe('Game', () => {
     player.move("left");
     expect(player.currentX).toEqual(0);
   })
+  test('should check that the player move is valid based on their current position', () => {
+    player.move("up");
+    expect(player.currentY).toEqual(0);
+    player.move("left");
+    expect(player.currentX).toEqual(0);
+    player.currentX = 2;
+    player.currentY = 2;
+    player.move("down");
+    expect(player.currentY).toEqual(2);
+    player.move("right");
+    expect(player.currentX).toEqual(2);
+  })
 })
