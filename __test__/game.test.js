@@ -50,4 +50,9 @@ describe('Game', () => {
     roomTest.buildRoom('encounter');
     expect(roomTest.type).toEqual('encounter');
   })
+  test('should check the Player constructor should add health, potions and currentWeapon values to the player object', () => {
+    expect(player.health).toEqual(100);
+    expect(player.potions).toEqual(0);
+    expect(player.currentWeapon).toEqual('sword');
+  })
 })
