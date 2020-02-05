@@ -8,13 +8,13 @@ describe('Game', () => {
   beforeEach(() => {
     game = new Game();
     player = new Player();
-    roomTest = new Room(0,0);
+    roomTest = new Room(0, 0);
   })
   test('should check for successful Game constructionk', () => {
     expect(typeof game).toEqual("object");
   })
   test('should check that Game constructor creates a rooms array of arrays', () => {
-    expect(game.rooms).toEqual([[],[],[]]);
+    expect(game.rooms).toEqual([[], [], []]);
   })
   test('should check that Player constructor creates a Player with currentX and currentY values equal to 0', () => {
     expect(player.currentX).toEqual(0);
@@ -46,5 +46,8 @@ describe('Game', () => {
     expect(roomTest.x).toEqual(0);
     expect(roomTest.y).toEqual(0);
   })
-
+  test('should check that the Room.buildRoom() method should add roomType to Room object based on parameter', () => {
+    roomTest.buildRoom('encounter');
+    expect(roomTest.type).toEqual('encounter');
+  })
 })
