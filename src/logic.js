@@ -32,4 +32,8 @@ export class Room {
     this.x = x;
     this.y = y;
   }
+  buildRoom(type) {
+    this.type = type;
+    // if(type === 'encounter')
+  }
 }
