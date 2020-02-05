@@ -1,12 +1,14 @@
-import { Game, Player } from './../src/logic.js'
+import { Game, Player, Room } from './../src/logic.js'
 
 let game;
 let player;
+let roomTest;
 
 describe('Game', () => {
   beforeEach(() => {
     game = new Game();
     player = new Player();
+    roomTest = new Room();
   })
   test('should check for successful Game constructionk', () => {
     expect(typeof game).toEqual("object");
@@ -40,4 +42,9 @@ describe('Game', () => {
     player.move("right");
     expect(player.currentX).toEqual(2);
   })
+  test('should check that the Room constructor creates a Room with x and y positions', () => {
+    expect(roomTest.x).toEqual(0);
+    expect(roomTest.y).toEqual(0);
+  })
+
 })

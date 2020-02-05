@@ -26,3 +26,7 @@ export class Player {
     }
   }
 }
+
+export class Room {
+  
+}
