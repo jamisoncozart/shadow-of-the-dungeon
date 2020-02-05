@@ -55,4 +55,8 @@ describe('Game', () => {
     expect(player.potions).toEqual(0);
     expect(player.currentWeapon).toEqual('sword');
   })
+  test('should check if player has taken damage and return appropiate message depending on health remaining', ()=>{
+    expect(player.takeDamage(20)).toEqual('You took 20 damage')
+    expect(player.takeDamage(120)).toEqual('You Died.....')
+  })
 })
