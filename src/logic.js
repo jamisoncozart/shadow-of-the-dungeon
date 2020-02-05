@@ -6,7 +6,7 @@ export class Game {
 
 export class Player {
   constructor() {
-    this.currentX = 1;
+    this.currentX = 0;
     this.currentY = 0;
   }
 }

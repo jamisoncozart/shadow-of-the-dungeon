@@ -13,6 +13,6 @@ describe('Game', () => {
   test('should check that Player constructor creates a Player with currentX and currentY values equal to 0', () => {
     const player = new Player();
     expect(player.currentX).toEqual(0);
-    expect(player.currenY).toEqual(0);
+    expect(player.currentY).toEqual(0);
   })
 })
