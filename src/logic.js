@@ -12,7 +12,7 @@ export class Player {
   move(direction) {
     switch(direction) {
       case "down":
-        if(this.currenY !== 2) this.currentY++;
+        if(this.currentY !== 2) this.currentY++;
         break;
       case "up":
         if(this.currentY !== 0) this.currentY--;
