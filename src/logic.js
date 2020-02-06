@@ -18,7 +18,7 @@ export class Player {
     this.health = 100;
     this.potions = 0;
     this.currentWeapon = {
-      name: "Exclibur",
+      name: "Excalibur",
       dmg: 20,
     };
     }
