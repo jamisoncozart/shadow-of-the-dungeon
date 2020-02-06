@@ -4,6 +4,7 @@ import './styles.css'
 
 const game = new Game();
 const roomTypes = ['encounter', 'loot'];
+const player = new Player();
 const room1 = new Room();
 const room2 = new Room();
 const room3 = new Room();
@@ -34,6 +35,18 @@ const displayOptions = (room)=> {
   }
 }
 
+const displayData = function() {
+  $("#goblinStats").hide();
+  if(currentRoom.name === 'Goblin') {
+    $("#goblinStats").show();
+    $("#goblinHealth").html(currentRoom.health)
+  }
+  $("#playerStats").show();
+  $("#health").html(player.health);
+  $("#potions").html(player.potions);
+  $("#gold").html(player.gold);
+}
+
 let currentRoom;
 $(document).ready(function() {
   for(let i = 0; i < roomsArray.length; i++) {
@@ -41,11 +54,12 @@ $(document).ready(function() {
     roomsArray[i].buildRoom(roomTypes[temp]);
   }
   game.addRooms(roomsArray);
-  game.rooms[0][0] = new startRoom();
-  const player = new Player();
-  displayOptions(game.rooms[0][0]);
+  // game.rooms[0][0] = new startRoom();
+  // displayOptions(game.rooms[0][0]);
   console.log(currentRoom);
   // let currentRoom= {};
+  currentRoom = player.enterRoom(game);
+  $("#button-cont").hide();
   $("#output").html(`<img src='${player.enterRoom(game)}' alt='something'>`);
   $("#button-cont").on('click', 'button', event => {
     player.move(event.target.id)
@@ -55,6 +69,7 @@ $(document).ready(function() {
     displayOptions(currentRoom);
     console.log("X: " + player.currentX + ", Y: " + player.currentY)
     console.log(currentRoom);
+    displayData();
   })
   //click listeners for goblin buttons
   $("#fight").click(function() {
@@ -66,6 +81,7 @@ $(document).ready(function() {
       $("#button-cont").show();
     }
     player.takeDamage(currentRoom.weapon.dmg);
+    displayData();
     if(player.dead) {
       $("#game").hide();
       $("#gameOver").show();
@@ -84,11 +100,29 @@ $(document).ready(function() {
       $("#message").html("Chest Looted.");
       $("#button-cont").show();
       $("#lootBtns").hide();
+      displayData();
     }
   })
   $("#leave").click(function() {
     $("#button-cont").show();
     $("#lootBtns").hide();
+    displayData();
+  })
+  $("#start").click(function() {
+    $("body").removeClass('start');
+    $("#potionBtn").show();
+    $("#start").hide();
+    displayOptions(currentRoom);
+    $("img").attr('src', currentRoom.img);
+    displayData();
+  })
+  $("#potionBtn").click(function() {
+    if(player.potions > 0) {
+      player.takePotion();
+    } else {
+      alert("You don't have any potions");
+    }
+    displayData();
   })
 })
 

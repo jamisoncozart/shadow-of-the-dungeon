@@ -17,7 +17,7 @@ export class Player {
     this.gold = 0;
     this.currentY = 0;
     this.health = 100;
-    this.potions = 0;
+    this.potions = 1;
     this.dead = false;
     this.currentWeapon = {
       name: "Excalibur",
@@ -63,6 +63,12 @@ export class Player {
     } else {
       this.dead = false;
       return false;
+    }
+  }
+  takePotion() {
+    if(this.potions > 0) {
+      this.health += 50;
+      this.potions--;
     }
   }
 }

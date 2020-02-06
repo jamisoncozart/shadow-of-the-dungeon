@@ -1,18 +1,18 @@
 import { Game, Player, Room } from './../src/logic.js'
 
-let game;
-let player;
-let roomTest;
-let room1 = new Room();
-let room2 = new Room();
-let room3 = new Room();
-let room4 = new Room();
-let room5 = new Room();
-let room6 = new Room();
-let room7 = new Room();
-let room8 = new Room();
 
 describe('Game', () => {
+  let game;
+  let player;
+  let roomTest;
+  let room1 = new Room();
+  let room2 = new Room();
+  let room3 = new Room();
+  let room4 = new Room();
+  let room5 = new Room();
+  let room6 = new Room();
+  let room7 = new Room();
+  let room8 = new Room();
   beforeEach(() => {
     game = new Game();
     player = new Player();
@@ -64,7 +64,7 @@ describe('Game', () => {
   })
   test('should check the Player constructor should add health, potions and currentWeapon values to the player object', () => {
     expect(player.health).toEqual(100);
-    expect(player.potions).toEqual(0);
+    expect(player.potions).toEqual(1);
     expect(player.currentWeapon.name).toEqual('Excalibur');
   })
   test('should check if player has taken damage and return appropiate message depending on health remaining', ()=>{
