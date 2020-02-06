@@ -1,0 +1,23 @@
+body{
+  background-image: url('https://cdn.hipwallpaper.com/i/33/18/mouVTa.jpg');
+  background-size: 100vw;
+  color: white;
+  font-family: 'Megrim', cursive;
+}
+h1{
+  font-family: 'MedievalSharp', cursive;
+}
+.display{
+  margin: 20vh 0 0 0;
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+#message{
+  height: 20vh;
+  width: 50vw;
+  background-color: rgba(0, 0, 0, 0.555)
+}
