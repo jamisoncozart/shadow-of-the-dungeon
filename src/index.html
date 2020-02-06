@@ -8,22 +8,32 @@
   <!-- <script src="./main.js"></script> -->
   <title>Shadow of the Dungeon</title>
 </head>
-<body>
-  <h1>Shadow of the Dungeon</h1>
-  <div class="display">
-      <p id="output"></p>
-      <div id='message'></div>
+<body class="start">
+  <div id="game">
+    <h1>Shadow of the Dungeon</h1>
+    <div class="display">
+        <p id="output"></p>
+        <div id='message'></div>
+    </div>
+    
+    <div id="button-cont">
+      <button id='left'>left</button>
+      <button id="up">Up</button>
+      <button id="down">down</button>
+      <button id="right">right</button>
+    </div>
+    <div id="goblinBtns">
+      <button id="fight">Fight!</button>
+      <button id="run">Run!</button>
+    </div>
+    <div id="lootBtns">
+      <button id="loot">Loot!</button>
+      <button id="leave">Keep Going...</button>
+    </div>
   </div>
   
-  <div id="button-cont">
-    <button id='left'>left</button>
-    <button id="up">Up</button>
-    <button id="down">down</button>
-    <button id="right">right</button>
-  </div>
-  <div id="goblinBtns">
-    <button id="fight">Fight!</button>
-    <button id="run">Run!</button>
+  <div id="gameOver">
+    <h1>GAME OVER</h1>
   </div>
 </body>
 </html>

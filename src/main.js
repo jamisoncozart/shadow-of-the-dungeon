@@ -1,4 +1,4 @@
-import { Game, Player, Room } from './logic.js';
+import { Game, Player, Room, startRoom } from './logic.js';
 import $ from 'jquery';
 import './styles.css'
 
@@ -16,56 +16,79 @@ const room9 = new Room();
 const roomsArray = [room1, room2, room3, room4, room5, room6, room7, room8, room9];
 
 
-const displayOptions = (name)=> {
-  if(name === 'Goblin') {
+const displayOptions = (room)=> {
+  if(room.name === 'Goblin' && !room.dead) {
     $("#button-cont").hide();
+    $("#lootBtns").hide();
     $("#goblinBtns").show();
+  } else if(room.name === 'Loot!' && !room.openned){
+    $("#button-cont").hide();
+    $("#goblinBtns").hide();
+    $("#lootBtns").show();
+  } else if(room.name === "Enter the Dungeon") {
+    // $("")
+  }else {
+    $("#button-cont").show();
+    $("#lootBtns").hide();
+    $("#goblinBtns").hide();
   }
-
 }
 
+let currentRoom;
 $(document).ready(function() {
   for(let i = 0; i < roomsArray.length; i++) {
     let temp = Math.round(Math.random());
     roomsArray[i].buildRoom(roomTypes[temp]);
   }
   game.addRooms(roomsArray);
+  game.rooms[0][0] = new startRoom();
   const player = new Player();
+  displayOptions(game.rooms[0][0]);
+  console.log(currentRoom);
   // let currentRoom= {};
   $("#output").html(`<img src='${player.enterRoom(game)}' alt='something'>`);
-  //click listeners for movement buttons
   $("#button-cont").on('click', 'button', event => {
     player.move(event.target.id)
     $('#output').empty()
-   let currentRoom = player.enterRoom(game);
-    $("#output").html(`<div class="room"><img src='${currentRoom.img}' alt='something'><h2 class="title">${currentRoom.name}</h2><hr><p class="description"></p></div>`)
-    displayOptions(currentRoom.name);
-    // console.log(game);
-    // console.log(player);
-    console.log(currentRoom.dead);
-    if(currentRoom.dead){
-      $('#message').text("You have allready killed this goblin")
-      $("#button-cont").show();
-      $("#goblinBtns").hide();
-    }else {
-    $("#goblinBtns").on('click', 'button', event => {
-    
-        if(event.target.id === "fight") {
-          $('#message').text(currentRoom.takeDamage(player))
-          if(currentRoom.health < 0 ){
-            $("#button-cont").show();
-            $("#goblinBtns").hide();
-          }
-      
-      } else if(event.target.id === "run") {
-        console.log("You coward");
-      }
-      
-      
-    })
-  }
-
+    currentRoom = player.enterRoom(game);
+    $("#output").html(`<div class="room"><img src='${currentRoom.img}'><h2 class="title">${currentRoom.name}</h2><hr></div>`)
+    displayOptions(currentRoom);
+    console.log("X: " + player.currentX + ", Y: " + player.currentY)
+    console.log(currentRoom);
   })
   //click listeners for goblin buttons
- 
+  $("#fight").click(function() {
+    currentRoom.takeDamage(player);
+    if(currentRoom.dead) {
+      $("img").attr('src', "https://lh3.googleusercontent.com/proxy/wsqlsO2Cb4iYCQ5h7dRly4pbUKSV_WbwkJq40oZiHREAbkp1AxTh02_pv3dqBGouDbyGWkTXLqOjqK5KnTL4qLD_WhkxysXonqfGn5kAISeGd07vxs4erLI_P4xnqZ8_BPgr")
+      $("#message").html("This goblin has been slain.");
+      $("#goblinBtns").hide();
+      $("#button-cont").show();
+    }
+    player.takeDamage(currentRoom.weapon.dmg);
+    if(player.dead) {
+      $("#game").hide();
+      $("#gameOver").show();
+    }
+  })
+  $("#loot").click(function() {
+    if(currentRoom.openned) {
+      $("img").attr("src", "https://runescape.wiki/images/thumb/8/80/Treasure_chest_%28uncharted_isles%29_tier_1_open.png/255px-Treasure_chest_%28uncharted_isles%29_tier_1_open.png?68cf5")
+      $("#message").html("You've already taken the spoils");
+      $("#button-cont").show();
+      $("#lootBtns").hide();
+    } else {
+      player.gold += 50;
+      player.potions++;
+      currentRoom.openned = true;
+      $("#message").html("Chest Looted.");
+      $("#button-cont").show();
+      $("#lootBtns").hide();
+    }
+  })
+  $("#leave").click(function() {
+    $("#button-cont").show();
+    $("#lootBtns").hide();
+  })
 })
+

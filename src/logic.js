@@ -14,9 +14,11 @@ export class Game {
 export class Player {
   constructor() {
     this.currentX = 0;
+    this.gold = 0;
     this.currentY = 0;
     this.health = 100;
     this.potions = 0;
+    this.dead = false;
     this.currentWeapon = {
       name: "Excalibur",
       dmg: 20,
@@ -24,9 +26,8 @@ export class Player {
     }
 
     takeDamage(dmg) {
-        this.health -= dmg;
-        if(this.health <= 0) {return 'You Died.....'}
-        else {return `You took ${dmg} damage`}
+      this.health -= dmg;
+      return this.checkIfDead();
     }
   move(direction) {
     switch(direction) {
@@ -46,7 +47,23 @@ export class Player {
   }
   enterRoom(Game) {
     let currentRoom = Game.rooms[this.currentX][this.currentY];
+
+    if(currentRoom.content.dead) {
+      currentRoom.content.img = "https://lh3.googleusercontent.com/proxy/wsqlsO2Cb4iYCQ5h7dRly4pbUKSV_WbwkJq40oZiHREAbkp1AxTh02_pv3dqBGouDbyGWkTXLqOjqK5KnTL4qLD_WhkxysXonqfGn5kAISeGd07vxs4erLI_P4xnqZ8_BPgr"
+      currentRoom.content.message = "This goblin has already been slain."
+    } else if(currentRoom.content.openned) {
+      currentRoom.content.img = 'https://runescape.wiki/images/thumb/8/80/Treasure_chest_%28uncharted_isles%29_tier_1_open.png/255px-Treasure_chest_%28uncharted_isles%29_tier_1_open.png?68cf5'
+    }
     return currentRoom.content;
+  }
+  checkIfDead() {
+    if(this.health <= 0) {
+      this.dead = true;
+      return true;
+    } else {
+      this.dead = false;
+      return false;
+    }
   }
 }
 
@@ -70,6 +87,7 @@ export class Enemy {
     this.dead = false;
     this.name = "Goblin";
     this.health = 50;
+    this.message = "You have encountered a goblin. Fight for your life!",
     this.weapon = {
       name: 'Goblin Sword',
       dmg: 15
@@ -80,22 +98,30 @@ export class Enemy {
     // console.log(player);
     
     this.health -= player.currentWeapon.dmg;
-    let message = ''
-    if(this.health <= 0) { 
-      message =` Goblin health: 0, You killed the goblin!` 
-      this.dead = true
+    return this.checkIfDead();
+  }
+  checkIfDead() {
+    if(this.health <= 0) {
+      this.dead = true;
+      return true;
+    } else {
+      this.dead = false;
+      return false;
     }
-    else if(this.health > 0 ) { message= ` Goblin health: ${this.health}, The goblin took ${player.currentWeapon.dmg} damage`}
-    // console.log( player.takeDamage(this.weapon.dmg));
-    return message
   }
 }
 
 export class Loot {
   constructor(){
+    this.openned = false;
     this.name = "Loot!";
-    this.potions = 1;
-    this.gold = 10;
     this.img = 'https://gamepedia.cursecdn.com/paladins_gamepedia/thumb/2/28/Colossal_Chest.png/300px-Colossal_Chest.png?version=7e43e9ee467cc2fa7a912c6c16638c95';
+  }
+}
+
+export class startRoom {
+  constructor() {
+    this.name = "Enter the Dungeon";
+    this.img = "https://i.pinimg.com/originals/60/78/af/6078af6098937f4ae4e8e130a2b88e97.jpg";
   }
 }
