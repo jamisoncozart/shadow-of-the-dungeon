@@ -63,6 +63,7 @@ $(document).ready(function() {
   // displayOptions(game.rooms[0][0]);
   console.log(currentRoom);
   // let currentRoom= {};
+  console.log(game);
   currentRoom = player.enterRoom(game);
   $("#button-cont").hide();
   $("#output").html(`<img src='${player.enterRoom(game)}' alt='something'>`);

@@ -3,26 +3,36 @@ export class Game {
     this.rooms = [[],[],[]];
   }
   addRooms(roomsArray) {
-    for(let y = 0; y < 3; y++) {
-      for(let x = 0; x < 3; x++) {
-        // Some spaces are being assigned duplicates of the same room!
-        this.rooms[y][x] = roomsArray[Math.floor(Math.random()*roomsArray.length)];
+    // for(let y = 0; y < 3; y++) {
+    //   for(let x = 0; x < 3; x++) {
+    //     for(let i = 0; i < roomsArray.length; i++) {
+      for(let i = 0; i < roomsArray.length; i++) {
+        if(i <= 2) {
+          this.rooms[0].push(roomsArray[i]);
+        } else if(i>2 && i <= 5) {
+          this.rooms[1].push(roomsArray[i]);
+        } else {
+          this.rooms[2].push(roomsArray[i]);
+        }
       }
-    }
+    //     }
+    //     // Some spaces are being assigned duplicates of the same room!
+    //   }
+    // }
   }
 }
 
 export class Player {
   constructor() {
     this.currentX = 0;
-    this.gold = 0;
     this.currentY = 0;
+    this.gold = 0;
     this.health = 100;
     this.potions = 1;
     this.dead = false;
     this.currentWeapon = {
       name: "Excalibur",
-      dmg: 20,
+      dmg: 20
     };
     }
 
@@ -59,6 +69,7 @@ export class Player {
   }
   checkIfDead() {
     if(this.health <= 0) {
+      this.health = 0;
       this.dead = true;
       return true;
     } else {
@@ -109,6 +120,7 @@ export class Enemy {
   }
   checkIfDead() {
     if(this.health <= 0) {
+      this.health = 0;
       this.dead = true;
       return true;
     } else {

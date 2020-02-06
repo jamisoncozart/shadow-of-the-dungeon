@@ -1,11 +1,14 @@
 body{
   background-image: url('https://cdn.hipwallpaper.com/i/33/18/mouVTa.jpg');
-  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
   font-family: 'Megrim', cursive;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  background-position: center;
 }
 
 
@@ -24,7 +27,7 @@ h1{
 }
 .display{
   width: 100vw;
-  height: 50vh;
+  /* height: 50vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,11 +37,11 @@ h1{
 img {
   margin-top: 100px;
 }
-#message{
+/* #message{
   height: 20vh;
   width: 50vw;
   background-color: rgba(0, 0, 0, 0.555)
-}
+} */
 
 #goblinBtns {
   display: none;
@@ -59,9 +62,13 @@ img {
 #stats {
   display: none;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   background-color: #222;
   padding: 20px;
+}
+
+#stats p, #stats span {
+  margin: 2px;
 }
 
 #button-cont {
@@ -76,4 +83,16 @@ img {
 
 #button-cont button, button {
   margin: 5px;
+}
+
+#output {
+  box-sizing: content-box;
+  margin: 0;
+  height: auto;
+}
+
+#output img {
+  height: 300px; 
+  width: auto;
+  margin-top: 40vh;
 }
