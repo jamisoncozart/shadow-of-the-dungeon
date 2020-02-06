@@ -15,32 +15,42 @@
         <p id="output"></p>
         <div id='message'></div>
     </div>
-    <div id="playerStats">
-      <p>Potions: <span id="potions"></span></p>
-      <p>Health: <span id="health"></span></p>
-      <p>Gold: <span id="gold"></span></p>
+    <!-- Stats Display -->
+    <div id="stats">
+      <div id="playerStats">
+        <p>Potions: <span id="potions"></span></p>
+        <p>Health: <span id="health"></span></p>
+        <p>Gold: <span id="gold"></span></p>
+      </div>
+      <div id="goblinStats">
+        <p>Goblin Health: <span id="goblinHealth"></span></p>
+      </div>
     </div>
-    <div id="goblinStats">
-      <p>Goblin Health: <span id="goblinHealth"></span></p>
-    </div>
+    <!-- Potion Button -->
+    <button id="potionBtn" class='btn btn-success btn-lg'>Take Potion</button>
+    <!-- Navigation Buttons -->
     <div id="button-cont">
-      <button id='left'>left</button>
-      <button id="up">Up</button>
-      <button id="down">down</button>
-      <button id="right">right</button>
+      <button id="up" class='btn btn-primary btn-lg'>Up</button>
+      <div id="leftRight">
+        <button id='left' class='btn btn-primary btn-lg'>left</button>
+        <button id="right" class='btn btn-primary btn-lg'>right</button>
+      </div>
+      <button id="down" class='btn btn-primary btn-lg'>down</button>
     </div>
-    <button id="potionBtn">Take Potion</button>
+    <!-- Combat Buttons -->
     <div id="goblinBtns">
-      <button id="fight">Fight!</button>
-      <button id="run">Run!</button>
+      <button id="fight" class='btn btn-danger btn-lg'>Fight!</button>
+      <button id="run" class='btn btn-warning btn-lg'>Run!</button>
     </div>
+    <!-- Loot Buttons -->
     <div id="lootBtns">
-      <button id="loot">Loot!</button>
-      <button id="leave">Keep Going...</button>
+      <button id="loot" class='btn btn-warning btn-lg'>Loot!</button>
+      <button id="leave" class='btn btn-danger btn-lg'>Keep Going...</button>
     </div>
   </div>
-  <button id="start">START</button>
-  
+  <!-- Start Button -->
+  <button id="start" class="btn btn-success btn-lg">START</button>
+  <!-- Game Over Display -->
   <div id="gameOver">
     <h1>GAME OVER</h1>
   </div>

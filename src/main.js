@@ -1,6 +1,10 @@
 import { Game, Player, Room, startRoom } from './logic.js';
 import $ from 'jquery';
-import './styles.css'
+import './styles.css';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+
 
 const game = new Game();
 const roomTypes = ['encounter', 'loot'];
@@ -36,6 +40,7 @@ const displayOptions = (room)=> {
 }
 
 const displayData = function() {
+  $("#stats").show();
   $("#goblinStats").hide();
   if(currentRoom.name === 'Goblin') {
     $("#goblinStats").show();

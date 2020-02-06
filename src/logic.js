@@ -5,6 +5,7 @@ export class Game {
   addRooms(roomsArray) {
     for(let y = 0; y < 3; y++) {
       for(let x = 0; x < 3; x++) {
+        // Some spaces are being assigned duplicates of the same room!
         this.rooms[y][x] = roomsArray[Math.floor(Math.random()*roomsArray.length)];
       }
     }

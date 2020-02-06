@@ -3,7 +3,19 @@ body{
   background-size: 100vw;
   color: white;
   font-family: 'Megrim', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+
+
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .start{
   background-image: url("https://i.pinimg.com/originals/60/78/af/6078af6098937f4ae4e8e130a2b88e97.jpg")
 }
@@ -11,13 +23,16 @@ h1{
   font-family: 'MedievalSharp', cursive;
 }
 .display{
-  margin: 20vh 0 0 0;
   width: 100vw;
   height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; 
+}
+
+img {
+  margin-top: 100px;
 }
 #message{
   height: 20vh;
@@ -39,4 +54,26 @@ h1{
 
 #potionBtn {
   display: none;
+}
+
+#stats {
+  display: none;
+  color: white;
+  font-size: 20px;
+  background-color: #222;
+  padding: 20px;
+}
+
+#button-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+#leftRight {
+  display: flex;
+  flex-direction: row;
+}
+
+#button-cont button, button {
+  margin: 5px;
 }
