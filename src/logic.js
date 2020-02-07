@@ -64,6 +64,8 @@ export class Player {
       currentRoom.content.message = "This goblin has already been slain."
     } else if(currentRoom.content.openned) {
       currentRoom.content.img = 'https://runescape.wiki/images/thumb/8/80/Treasure_chest_%28uncharted_isles%29_tier_1_open.png/255px-Treasure_chest_%28uncharted_isles%29_tier_1_open.png?68cf5'
+    } else if(currentRoom.content.name === 'Mind Flayer') {
+      currentRoom.content.img = "https://venturebeat.com/wp-content/uploads/2019/07/Mind-Flayer-Monster-Manual.png?w=1200&strip=all"
     }
     return currentRoom.content;
   }
@@ -130,6 +132,35 @@ export class Enemy {
   }
 }
 
+export class Boss {
+  constructor() {
+    this.dead = false;
+    this.health = 100;
+    this.dmg = 30;
+    this.weapon = {
+      name: 'Mind Warp',
+      dmg: 30
+    };
+    this.name = "Mind Flayer";
+    this.message = "You can feel his tentacles grasping at your mind.";
+    this.img = "https://venturebeat.com/wp-content/uploads/2019/07/Mind-Flayer-Monster-Manual.png?w=1200&strip=all";
+  }
+  takeDamage(player) {
+    this.health -= player.currentWeapon.dmg;
+    return this.checkIfDead();
+  }
+  checkIfDead() {
+    if(this.health <= 0) {
+      this.health = 0;
+      this.dead = true;
+      return true
+    } else {
+      this.dead = false;
+      return false
+    }
+  }
+}
+
 export class Loot {
   constructor(){
     this.openned = false;
@@ -141,6 +172,10 @@ export class Loot {
 export class startRoom {
   constructor() {
     this.name = "Enter the Dungeon";
+    this.message = "You find yourself at the entrance to a dungeon. It's shadow looms over you, you have no idea how you got here."
     this.img = "https://i.pinimg.com/originals/60/78/af/6078af6098937f4ae4e8e130a2b88e97.jpg";
   }
 }
+
+
+//his hold on your mind has been released. You find yourself back in your home as if you had never left.

@@ -12,6 +12,16 @@
   <div id="game">
     <h1>Shadow of the Dungeon</h1>
     <div class="display">
+      <div id="enemyStats">
+        <div id="bossStats">
+            <h3>Zaurudimu the Terrible</h3>
+              <p>Health: <span id="bossHealth"></span></p>
+              <img src="https://venturebeat.com/wp-content/uploads/2019/07/Mind-Flayer-Monster-Manual.png?w=1200&strip=all" alt="Picture of daddy">
+          </div>
+          <div id="goblinStats">
+              <p>Goblin Health: <span id="goblinHealth"></span></p>
+            </div>
+          </div>
         <p id="output"></p>
         <div id='message'></div>
     </div>
@@ -22,9 +32,8 @@
         <p>Health: <span id="health"></span></p>
         <p>Gold: <span id="gold"></span></p>
       </div>
-      <div id="goblinStats">
-        <p>Goblin Health: <span id="goblinHealth"></span></p>
-      </div>
+      
+      
     </div>
     <!-- Potion Button -->
     <button id="potionBtn" class='btn btn-success btn-lg'>Take Potion</button>
@@ -42,6 +51,11 @@
       <button id="fight" class='btn btn-danger btn-lg'>Fight!</button>
       <button id="run" class='btn btn-warning btn-lg'>Run!</button>
     </div>
+    <!-- Boss Buttons -->
+    <div id="bossBtns">
+      <button id="fightBoss" class='btn btn-danger btn-lg'>Fight!</button>
+      <button id="runBoss" class='btn btn-warning btn-lg'>Run!</button>
+    </div> 
     <!-- Loot Buttons -->
     <div id="lootBtns">
       <button id="loot" class='btn btn-warning btn-lg'>Loot!</button>

@@ -1,4 +1,4 @@
-import { Game, Player, Room, startRoom } from './logic.js';
+import { Game, Player, Room, startRoom, Boss } from './logic.js';
 import $ from 'jquery';
 import './styles.css';
 import 'bootstrap';
@@ -9,6 +9,7 @@ import './styles.css';
 const game = new Game();
 const roomTypes = ['encounter', 'loot'];
 const player = new Player();
+const boss = new Boss();
 const room1 = new Room();
 const room2 = new Room();
 const room3 = new Room();
@@ -30,8 +31,11 @@ const displayOptions = (room)=> {
     $("#button-cont").hide();
     $("#goblinBtns").hide();
     $("#lootBtns").show();
-  } else if(room.name === "Enter the Dungeon") {
-    // $("")
+  } else if(room.name === "Mind Flayer") {
+    $("#bossBtns").show();
+    $("#goblinBtns").hide();
+    $("#button-cont").hide();
+    $("#lootBtns").hide();
   }else {
     $("#button-cont").show();
     $("#lootBtns").hide();
@@ -42,9 +46,16 @@ const displayOptions = (room)=> {
 const displayData = function() {
   $("#stats").show();
   $("#goblinStats").hide();
+  $("#enemyStats").hide();
   if(currentRoom.name === 'Goblin') {
+    $("#enemyStats").show();
     $("#goblinStats").show();
     $("#goblinHealth").html(currentRoom.health)
+  } else if(currentRoom.name === 'Mind Flayer') {
+    $("#enemyStats").show();
+    $("#bossStats").show();
+    $("#goblinStats").hide();
+    $("#bossHealth").html(currentRoom.health);
   }
   $("#playerStats").show();
   $("#health").html(player.health);
@@ -59,11 +70,7 @@ $(document).ready(function() {
     roomsArray[i].buildRoom(roomTypes[temp]);
   }
   game.addRooms(roomsArray);
-  // game.rooms[0][0] = new startRoom();
-  // displayOptions(game.rooms[0][0]);
-  console.log(currentRoom);
-  // let currentRoom= {};
-  console.log(game);
+  game.rooms[2][2] = boss;
   currentRoom = player.enterRoom(game);
   $("#button-cont").hide();
   $("#output").html(`<img src='${player.enterRoom(game)}' alt='something'>`);
@@ -71,10 +78,8 @@ $(document).ready(function() {
     player.move(event.target.id)
     $('#output').empty()
     currentRoom = player.enterRoom(game);
-    $("#output").html(`<div class="room"><img src='${currentRoom.img}'><h2 class="title">${currentRoom.name}</h2><hr></div>`)
+    $("#output").html(`<div class="room"><img src='${currentRoom.img}'></div>`)
     displayOptions(currentRoom);
-    console.log("X: " + player.currentX + ", Y: " + player.currentY)
-    console.log(currentRoom);
     displayData();
   })
   //click listeners for goblin buttons
@@ -85,6 +90,23 @@ $(document).ready(function() {
       $("#message").html("This goblin has been slain.");
       $("#goblinBtns").hide();
       $("#button-cont").show();
+    }
+    player.takeDamage(currentRoom.weapon.dmg);
+    displayData();
+    if(player.dead) {
+      $("#game").hide();
+      $("#gameOver").show();
+    }
+  })
+  $("#fightBoss").click(function() {
+    currentRoom.takeDamage(player);
+    if(currentRoom.dead && currentRoom.name === "Goblin") {
+      $("img").attr('src', "https://lh3.googleusercontent.com/proxy/wsqlsO2Cb4iYCQ5h7dRly4pbUKSV_WbwkJq40oZiHREAbkp1AxTh02_pv3dqBGouDbyGWkTXLqOjqK5KnTL4qLD_WhkxysXonqfGn5kAISeGd07vxs4erLI_P4xnqZ8_BPgr")
+      $("#message").html("This goblin has been slain.");
+      $("#goblinBtns").hide();
+      $("#button-cont").show();
+    } else if(currentRoom.dead && currentRoom.name === "Mind Flayer") {
+      //show win screen
     }
     player.takeDamage(currentRoom.weapon.dmg);
     displayData();
